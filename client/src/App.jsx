@@ -1,35 +1,24 @@
 import ContactCard from './components/ContactCard';
 import './styles/App.css'
 import { Box } from 'grommet';
+import { useEffect, useState } from 'react';
+import axios from "axios";
+import NavBar from './components/NavBar';
+
 function App() {
-  const data = [
-    {
-      name: 'Siddharth Khatri',
-      phone: 9416072410,
-      email: 'siddxharth@gmail.com'
-    },
-    {
-      name: 'Vedant Khatri',
-      phone: 8950434367,
-      email: 'vedantkhatri88@gmail.com'
-    },
-    {
-      name: 'Mum',
-      phone: 9416969794,
-      email: 'mevanita@icloud.com'
-    },
-    {
-      name: 'Dad',
-      phone: 7988472353,
-      email: 'mevirender69@gmail.com'
-    },
-  ]
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch('/view')
+      .then((response) => response.json())
+      .then((data) => setData(data))
+  }, [])
   return (
     <Box align='center'>
       <h1>Phone Book</h1>
+      <NavBar />
       <div className='contacts-grid'>
         {data.map(contact => (
-          <ContactCard name={contact.name} phone={contact.phone} email={contact.email} />
+          <ContactCard key={contact.phone + contact.name} name={contact.name} phone={contact.phone} email={contact.email} />
         ))}
       </div>
     </Box>
