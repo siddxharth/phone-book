@@ -3,8 +3,10 @@ import { Box, Button } from 'grommet'
 
 export default function NavBar() {
     return (
-        <Box>
-            <Button>View Contacts</Button>
-        </Box>
+        <Box flex direction='row' width='medium' align='center' justify='between'>
+            <Button primary label='View'></Button>
+            <Button primary label='Add New'></Button>
+            <Button primary label='Update'></Button>
+        </Box >
     )
 }
